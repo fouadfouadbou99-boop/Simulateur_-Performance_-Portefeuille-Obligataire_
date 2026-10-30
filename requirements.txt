@@ -2,13 +2,8 @@ streamlit
 pandas
 numpy
 openpyxl
-xlsxwriter
 plotly
-scipy
-python-docx
+xlsxwriter
 reportlab
-matplotlib
-seaborn
-pyyaml
+python-docx
 pytest
-sqlalchemy
