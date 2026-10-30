@@ -1,5 +1,6 @@
 import streamlit as st
 from modules.loader import load_portfolio
+from modules.analytics import portfolio_kpis
 
 st.set_page_config(
     page_title="ALM Obligataire",
