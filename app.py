@@ -1,10 +1,60 @@
 import streamlit as st
 
+from modules.loader import load_portfolio
+from modules.analytics import portfolio_kpis
+
 st.set_page_config(
     page_title="ALM Obligataire",
     layout="wide"
 )
 
-st.title("Test")
+st.title("Simulateur de Performance du Portefeuille Obligataire")
 
-st.success("Application OK")
+file = st.file_uploader(
+    "Charger le portefeuille Excel",
+    type=["xlsx"]
+)
+
+if file:
+
+    try:
+
+        df = load_portfolio(file)
+
+        st.success("Portefeuille chargé")
+
+        st.write("Colonnes détectées :")
+        st.write(df.columns.tolist())
+
+        kpi = portfolio_kpis(df)
+
+        c1, c2, c3, c4 = st.columns(4)
+
+        c1.metric(
+            "Encours",
+            f"{kpi['encours']:,.0f} MAD"
+        )
+
+        c2.metric(
+            "Duration",
+            f"{kpi['duration']:.2f}"
+        )
+
+        c3.metric(
+            "Convexité",
+            f"{kpi['convexite']:.2f}"
+        )
+
+        c4.metric(
+            "DV01",
+            f"{kpi['dv01']:,.0f} MAD"
+        )
+
+        st.dataframe(
+            df,
+            use_container_width=True
+        )
+
+    except Exception as e:
+
+        st.exception(e)
