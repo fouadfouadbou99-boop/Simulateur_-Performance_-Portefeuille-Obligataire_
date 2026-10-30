@@ -3,33 +3,6 @@ import pandas as pd
 
 def portfolio_kpis(df):
 
-    required_cols = [
-        "Valorisation",
-        "Poids",
-        "DURATION",
-        "CONVEXITÉ"
-    ]
-
-    missing = [
-        col for col in required_cols
-        if col not in df.columns
-    ]
-
-    if missing:
-        raise ValueError(
-            f"Colonnes manquantes : {missing}"
-        )
-
-    # Conversion en numérique
-    for col in required_cols:
-        df[col] = pd.to_numeric(
-            df[col],
-            errors="coerce"
-        )
-
-    # Remplacement des valeurs manquantes
-    df = df.fillna(0)
-
     encours = df["Valorisation"].sum()
 
     duration = (
