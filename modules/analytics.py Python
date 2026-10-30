@@ -6,19 +6,19 @@ def portfolio_kpis(df):
     encours = df["Valorisation"].sum()
 
     duration = (
-        df["Poids"]
-        * df["DURATION"]
+        df["Poids"] *
+        df["DURATION"]
     ).sum()
 
     convexite = (
-        df["Poids"]
-        * df["CONVEXITÉ"]
+        df["Poids"] *
+        df["CONVEXITÉ"]
     ).sum()
 
     dv01 = (
-        df["Valorisation"]
-        * df["DURATION"]
-        * 0.0001
+        df["Valorisation"] *
+        df["DURATION"] *
+        0.0001
     ).sum()
 
     return {
