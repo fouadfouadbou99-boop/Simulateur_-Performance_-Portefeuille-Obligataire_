@@ -17,14 +17,9 @@ def normalize_columns(df):
 
     for col in df.columns:
 
-        key = (
-            str(col)
-            .strip()
-            .lower()
-        )
+        key = str(col).strip().lower()
 
         if key in COLUMN_MAPPING:
-
             cols[col] = COLUMN_MAPPING[key]
 
     return df.rename(columns=cols)
@@ -32,7 +27,19 @@ def normalize_columns(df):
 
 def load_portfolio(file):
 
-    df = pd.read_excel(file)
+    xls = pd.ExcelFile(file)
+
+    if "Portefeuille" not in xls.sheet_names:
+
+        raise ValueError(
+            f"Feuille Portefeuille introuvable. "
+            f"Feuilles disponibles : {xls.sheet_names}"
+        )
+
+    df = pd.read_excel(
+        file,
+        sheet_name="Portefeuille"
+    )
 
     df = normalize_columns(df)
 
@@ -52,8 +59,13 @@ def load_portfolio(file):
     if missing:
 
         raise ValueError(
-            f"Colonnes manquantes: {missing}\n"
-            f"Colonnes disponibles: {list(df.columns)}"
+            f"""
+Colonnes manquantes : {missing}
+
+Colonnes disponibles :
+
+{list(df.columns)}
+            """
         )
 
     return df
