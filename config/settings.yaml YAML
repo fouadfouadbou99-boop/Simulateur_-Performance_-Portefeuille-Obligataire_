@@ -1,0 +1,16 @@
+portfolio:
+  horizon: 1
+  rolldown_factor: 0.0005
+
+stress:
+  min_bps: -100
+  max_bps: 100
+  step_bps: 5
+
+limits:
+  duration_max: 10
+  dv01_max: 600000
+  concentration_max: 25
+
+reporting:
+  currency: MAD
