@@ -1,11 +1,10 @@
 import streamlit as st
-import os
 
-st.title("Diagnostic")
+st.set_page_config(
+    page_title="ALM Obligataire",
+    layout="wide"
+)
 
-st.write("Racine :", os.listdir("."))
+st.title("Test OK")
 
-if os.path.exists("modules"):
-    st.write("Modules :", os.listdir("modules"))
-else:
-    st.error("Dossier modules introuvable")
+st.success("Application chargée correctement")
