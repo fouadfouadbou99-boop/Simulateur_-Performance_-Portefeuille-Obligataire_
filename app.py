@@ -1,6 +1,22 @@
 import streamlit as st
 from modules.loader import load_portfolio
 from modules.analytics import portfolio_kpis
+import plotly.express as px
+
+from modules.scenarios import simulate
+scenarios = simulate(df)
+
+fig = px.line(
+    scenarios,
+    x="Choc",
+    y="Performance",
+    markers=True
+)
+
+st.plotly_chart(
+    fig,
+    use_container_width=True
+)
 kpi = portfolio_kpis(df)
 
 c1,c2,c3,c4 = st.columns(4)
