@@ -1,39 +1,29 @@
 import pandas as pd
 
 
-def compute_weights(df):
+def portfolio_kpis(df):
 
-    total = df["Valorisation"].sum()
+    encours = df["Valorisation"].sum()
 
-    df["Poids"] = (
-        df["Valorisation"] / total
-    )
-
-    return df
-
-
-def compute_dv01(df):
-
-    df["DV01"] = (
-        df["Valorisation"]
-        * df["DURATION"]
-        * 0.0001
-    )
-
-    return df
-
-
-def duration_portfolio(df):
-
-    return (
+    duration = (
         df["Poids"]
         * df["DURATION"]
     ).sum()
 
-
-def convexity_portfolio(df):
-
-    return (
+    convexite = (
         df["Poids"]
         * df["CONVEXITÉ"]
     ).sum()
+
+    dv01 = (
+        df["Valorisation"]
+        * df["DURATION"]
+        * 0.0001
+    ).sum()
+
+    return {
+        "encours": encours,
+        "duration": duration,
+        "convexite": convexite,
+        "dv01": dv01
+    }
