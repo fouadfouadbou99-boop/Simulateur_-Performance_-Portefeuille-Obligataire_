@@ -1,12 +1,13 @@
 import streamlit as st
 
 from modules.loader import load_portfolio
+from modules.analytics import portfolio_kpis
 
 st.set_page_config(
     page_title="ALM Obligataire",
     layout="wide"
 )
 
-st.title("Test Loader")
+st.title("Test Analytics")
 
-st.success("Import de loader.py réussi")
+st.success("Import analytics.py réussi")
