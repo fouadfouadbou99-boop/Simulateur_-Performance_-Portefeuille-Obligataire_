@@ -1,15 +1,32 @@
 import numpy as np
+import pandas as pd
 
 
-def generate_parallel_shocks():
+def simulate(df):
 
-    return np.arange(
-        -100,
-        105,
-        5
-    )
+    results = []
 
+    for shock in range(-40,45,5):
 
-def bps_to_decimal(bps):
+        shock_decimal = shock/10000
 
-    return bps / 10000
+        perf = (
+            df["Poids"]
+            * (
+                df["Carry"]
+                + df["RollDown"]
+                - df["DURATION"]*shock_decimal
+                + 0.5
+                * df["CONVEXITÉ"]
+                * shock_decimal**2
+            )
+        ).sum()
+
+        results.append(
+            {
+                "Choc": shock,
+                "Performance": perf
+            }
+        )
+
+    return pd.DataFrame(results)
