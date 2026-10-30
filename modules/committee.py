@@ -5,14 +5,13 @@ def committee_decision(kpi):
         return """
 Décision proposée :
 
-Le Comité recommande une réduction progressive
-de la duration afin de limiter l'exposition
-au risque de remontée des taux.
+Le Comité prend acte du niveau élevé de duration du portefeuille.
+
+Le Comité recommande le maintien d'une surveillance rapprochée du risque de taux et l'étude d'opportunités d'arbitrage susceptibles de réduire progressivement la duration.
 """
 
     return """
 Décision proposée :
 
-Le Comité décide le maintien
-de l'allocation actuelle.
+Le Comité prend acte des indicateurs de risque et décide le maintien de l'allocation actuelle.
 """
