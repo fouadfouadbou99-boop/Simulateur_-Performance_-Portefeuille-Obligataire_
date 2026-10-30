@@ -1,6 +1,12 @@
 import streamlit as st
 import plotly.express as px
+import os
+import streamlit as st
 
+st.write("Racine :", os.listdir("."))
+
+if os.path.exists("modules"):
+    st.write("Modules :", os.listdir("modules"))
 from modules.chargeur import load_portfolio
 from modules.analytics import portfolio_kpis
 from modules.scénarios import simulate
